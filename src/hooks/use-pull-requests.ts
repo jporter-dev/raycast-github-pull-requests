@@ -1,5 +1,5 @@
 import { Octokit } from "@octokit/rest";
-import { getPreferenceValues } from "@raycast/api";
+import { getPreferenceValues, showHUD } from "@raycast/api";
 import { useCachedState } from "@raycast/utils";
 import { useEffect } from "react";
 
@@ -48,7 +48,6 @@ export const usePullRequests = () => {
         return;
       }
 
-      console.debug("Fetching PRs from GitHub...");
       const payload: PullRequestState = {
         reviewRequested: {},
         isLoading: false,
@@ -57,9 +56,13 @@ export const usePullRequests = () => {
       };
 
       try {
+        console.debug("Fetching PRs from GitHub...");
+
         const { data: pullRequests } = await octokit.rest.search.issuesAndPullRequests({
           q: "is:open is:pr review-requested:@me",
         });
+
+        console.debug(`Found ${pullRequests.total_count} PRs`);
 
         payload.reviewRequested = pullRequests?.items?.reduce((acc: PullRequestItems, pr) => {
           const repo = pr.repository_url.split("repos/")[1];
@@ -82,12 +85,20 @@ export const usePullRequests = () => {
         }, {});
 
         payload.total = pullRequests.total_count;
-
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (e: any) {
+        console.debug("Unknown error: ", e);
         payload.failed = true;
         payload.failed_message = e.message ?? "Unknown error";
-        console.debug("Unknown error: ", e);
+      }
+
+      if (pullRequests.total !== payload.total) {
+        const diff = payload.total - pullRequests.total;
+        if (diff > 0) {
+          const plural = diff > 1 ? "s" : "";
+          console.debug(`${diff} new PR${plural} ready for review!`);
+          showHUD(`${diff} new PR${plural} ready for review!`);
+        }
       }
 
       setPullRequests(payload);

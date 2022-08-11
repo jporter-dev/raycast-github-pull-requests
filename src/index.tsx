@@ -22,6 +22,20 @@ export default function Command() {
       </MenuBarExtra>
     );
 
+  if (repos.length === 0)
+    return (
+      <MenuBarExtra
+        icon={{
+          source: "https://github.githubassets.com/favicons/favicon.png",
+          tintColor: Color.Green,
+        }}
+        isLoading={isLoading}
+        tooltip={tooltip}
+      >
+        <MenuBarExtra.Item title="No open PRs requiring review" icon={Icon.Check} />
+      </MenuBarExtra>
+    );
+
   return (
     <MenuBarExtra
       icon={{

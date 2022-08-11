@@ -22,13 +22,16 @@
       "title": "GitHub Token",
       "description": "GitHub token to use for authentication",
       "type": "textfield",
-      "default": ""
+      "default": "",
+      "required": true
     }
   ],
+  "dependencies": {
+    "@raycast/api": "^1.38.3"
+  },
   "devDependencies": {
     "@octokit/rest": "^19.0.3",
     "@octokit/types": "^6.41.0",
-    "@raycast/api": "^1.38.3",
     "@raycast/utils": "^1.1.0",
     "@types/node": "~16.10.0",
     "@types/react": "^17.0.28",

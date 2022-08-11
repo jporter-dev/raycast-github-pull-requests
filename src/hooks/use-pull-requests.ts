@@ -1,5 +1,4 @@
 import { Octokit } from "@octokit/rest";
-import { RequestError } from "@octokit/types";
 import { getPreferenceValues } from "@raycast/api";
 import { useCachedState } from "@raycast/utils";
 import { useEffect } from "react";
@@ -58,7 +57,7 @@ export const usePullRequests = () => {
       };
 
       try {
-        const { data: pullRequests, data } = await octokit.rest.search.issuesAndPullRequests({
+        const { data: pullRequests } = await octokit.rest.search.issuesAndPullRequests({
           q: "is:open is:pr review-requested:@me",
         });
 
@@ -83,6 +82,8 @@ export const usePullRequests = () => {
         }, {});
 
         payload.total = pullRequests.total_count;
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (e: any) {
         payload.failed = true;
         payload.failed_message = e.message ?? "Unknown error";

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "github-pull-requests",
+  "title": "GitHub Pull Requests",
+  "description": "See pull requests requiring review at a glance",
+  "icon": "command-icon.png",
+  "author": "jporter-dev",
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "index",
+      "title": "Review Pull Requests",
+      "subtitle": "GitHub Pull Requests",
+      "description": "See GitHub pull requests requiring review",
+      "mode": "menu-bar",
+      "interval": "1m"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "token",
+      "title": "GitHub Token",
+      "description": "GitHub token to use for authentication",
+      "type": "textfield",
+      "default": ""
+    }
+  ],
+  "devDependencies": {
+    "@octokit/rest": "^19.0.3",
+    "@octokit/types": "^6.41.0",
+    "@raycast/api": "^1.38.3",
+    "@raycast/utils": "^1.1.0",
+    "@types/node": "~16.10.0",
+    "@types/react": "^17.0.28",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.5.1",
+    "typescript": "^4.4.3"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "publish": "ray publish"
+  }
+}

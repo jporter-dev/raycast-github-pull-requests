@@ -4,7 +4,8 @@
   "title": "GitHub Pull Requests",
   "description": "See pull requests requiring review at a glance",
   "icon": "command-icon.png",
-  "author": "jporter-dev",
+  "author": "jporter",
+  "owner": "jporter",
   "license": "MIT",
   "commands": [
     {
@@ -13,7 +14,7 @@
       "subtitle": "GitHub Pull Requests",
       "description": "See GitHub pull requests requiring review",
       "mode": "menu-bar",
-      "interval": "1m"
+      "interval": "2m"
     }
   ],
   "preferences": [

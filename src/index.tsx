@@ -27,7 +27,7 @@ export default function Command() {
       <MenuBarExtra
         icon={{
           source: "https://github.githubassets.com/favicons/favicon.png",
-          tintColor: Color.Green,
+          tintColor: Color.PrimaryText,
         }}
         isLoading={isLoading}
         tooltip={tooltip}
@@ -40,7 +40,7 @@ export default function Command() {
     <MenuBarExtra
       icon={{
         source: "https://github.githubassets.com/favicons/favicon.png",
-        tintColor: Color.PrimaryText,
+        tintColor: Color.Blue,
       }}
       isLoading={isLoading}
       title={total.toString()}
